@@ -5,7 +5,9 @@ yarn add --dev jest @babel/preset-env babel-jest
 
 # Create .babelrc file
 echo '{
-  "presets": ["@babel/preset-env"]
+  "presets": [
+    "@babel/preset-env"
+  ]
 }' > .babelrc
 
 # Create jest.config.js file
