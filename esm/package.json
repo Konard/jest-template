@@ -4,8 +4,8 @@
     "babel-jest": "^29.7.0",
     "jest": "^29.7.0"
   },
+  "type": "module",
   "scripts": {
-    "test": "jest"
-  },
-  "type": "module"
+    "test": "NODE_OPTIONS=\"--experimental-vm-modules\" jest"
+  }
 }

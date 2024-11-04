@@ -14,13 +14,13 @@ await fs.writeFile(
     "^.+\\\\.cjs$": "babel-jest",
     "^.+\\\\.mjs$": "babel-jest"
   },
-  testMatch: ["**/tests/**/*.[mc][jt]s?(x)", "**/?(*.)+(spec|test).[mc][jt]s?(x)"]
+  testMatch: ["**/tests/**/*.?([mc])[jt]s?(x)", "**/?(*.)+(spec|test).?([mc])[jt]s?(x)"]
 };
 `);
 
 // Update package.json using jq
 if (await fs.pathExists('package.json')) {
-  await $`jq '.scripts.test = "jest" | .type = "module"' package.json > temp.json && mv temp.json package.json`;
+  await $`jq '.scripts.test = "NODE_OPTIONS=\\"--experimental-vm-modules\\" jest" | .type = "module"' package.json > temp.json && mv temp.json package.json`;
   console.log("Test script and type module set in package.json.");
 } else {
   console.log("package.json not found.");

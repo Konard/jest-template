@@ -12,7 +12,11 @@ test('adds 1 + 2 to equal 3 (CommonJS)', async () => {
 });
 
 // CommonJS style test using dynamic require
-test('adds 3 + 4 to equal 7 (dynamic require)', () => {
+test('adds 3 + 4 to equal 7 (dynamic require)', async () => {
+  const { createRequire } = await import('module');
+  const { fileURLToPath } = await import('url');
+  const __filename = fileURLToPath(import.meta.url);
+  const require = createRequire(__filename);
   const { sum: dynSum } = require('../src/sample.cjs');
   expect(dynSum(3, 4)).toBe(7);
 });
